@@ -75,7 +75,11 @@ public class Events implements Listener {
                         event.setDropItems(false);
                         block.getWorld().stopSound(SoundStop.named(Sound.BLOCK_GLASS_BREAK));
                         block.getWorld().playSound(block.getLocation(), Sound.BLOCK_NOTE_BLOCK_IRON_XYLOPHONE, 5, 1);
-                        LuckyBlockEvent(player, block);
+
+                        //1 tick delay
+                        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+                            LuckyBlockEvent(player, block);
+                        }, 1L); //20 Tick = 1 Second
                     }
                 }
             }
@@ -86,10 +90,10 @@ public class Events implements Listener {
         int min = 1;
         int max = 6;
         int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
-        if(random_int == 1){
+        if(random_int == 1){//drop diamond sword
             block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.DIAMOND_SWORD, 1));
         }
-        else if(random_int == 2){
+        else if(random_int == 2){//summon angry bees
             for (int i = 0; i < 5; i++) {
                 block.getWorld().spawn(block.getLocation(), Bee.class, bee -> {
                     bee.setAnger(630);
@@ -97,21 +101,21 @@ public class Events implements Listener {
                 });
             }
         }
-        else if(random_int == 3){
-            for (int i = 0; i < 10; i++) {
+        else if(random_int == 3){//summon tnt
+            for (int i = 0; i < 5; i++) {
                 int finalI = i;
                 block.getWorld().spawn(block.getLocation(), TNTPrimed.class, TNTPrimed -> {
                     TNTPrimed.setFuseTicks(finalI);
                 });
             }
         }
-        else if(random_int == 4){
+        else if(random_int == 4){//set iron block
             block.getLocation().getBlock().setType(Material.IRON_BLOCK);
         }
-        else if(random_int == 5){
+        else if(random_int == 5){//drop golden apple
             block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.GOLDEN_APPLE, 1));
         }
-        else if(random_int == 6){
+        else if(random_int == 6){//spawn fast donkey
             block.getWorld().spawn(block.getLocation(), Donkey.class, entity -> {
                 Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)).setBaseValue(1.5);
             });

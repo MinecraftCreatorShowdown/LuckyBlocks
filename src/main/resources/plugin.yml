@@ -5,3 +5,8 @@ api-version: 1.19
 prefix: MCS-LuckyBlocks
 authors: [ ZombieNW, Slice ]
 description: Lucky blocks plugin made for MCS
+commands:
+  giveluckyblock:
+    description: Gives 16 MCS Lucky Blocks
+    usage: /<command>
+    aliases: glb

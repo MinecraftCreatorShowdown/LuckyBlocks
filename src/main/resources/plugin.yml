@@ -1,0 +1,7 @@
+name: Luckyblocks
+version: '${project.version}'
+main: net.minecraftcreatorshowdown.luckyblocks.Luckyblocks
+api-version: 1.19
+prefix: MCS-LuckyBlocks
+authors: [ ZombieNW, Slice ]
+description: Lucky blocks plugin made for MCS
